@@ -1,0 +1,33 @@
+import openpyxl
+
+workbook = openpyxl.Workbook()
+
+sheet = workbook.active
+
+sheet['B4'].value = '株式会社ABC'
+sheet['B5'].value = '〒101-0022 東京都千代田区神田練塀町300'
+sheet['B6'].value = 'TEL:03-1234-5678 FAX:03-1234-5678C'
+sheet['B7'].value = '担当者名:鈴木一郎 様'
+sheet['B10'].value = '商品名'
+sheet['B11'].value = '商品A'
+sheet['B12'].value = '商品B'
+sheet['C10'].value = '数量'
+sheet['D10'].value = '単価'
+sheet['E10'].value = '金額'
+sheet['F4'].value = 'No.'
+sheet['G4'].value = '0001'
+sheet['F5'].value = '日付'
+sheet['F5'].value = today.strftime('%Y/%m/%d')
+
+
+
+
+sheet['C11'].value = '2'
+sheet['D11'].value = '1'
+sheet['D11'].value = '10000'
+sheet['D12'].value = '15000'
+sheet['E11'].value = (2*10000)
+sheet['E12'].value = (1*15000)
+sheet['E13'].value = ((2*10000)+(1*15000))
+
+workbook.save('請求書_20230520（現在日付）.xlsx')
