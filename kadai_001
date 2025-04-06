@@ -1,33 +1,46 @@
 import openpyxl
+from datetime import datetime
 
 workbook = openpyxl.Workbook()
-
 sheet = workbook.active
 
+sheet['B2'].value = '請求書'
 sheet['B4'].value = '株式会社ABC'
 sheet['B5'].value = '〒101-0022 東京都千代田区神田練塀町300'
-sheet['B6'].value = 'TEL:03-1234-5678 FAX:03-1234-5678C'
+sheet['B6'].value = 'TEL:03-1234-5678 FAX:03-1234-5678'
 sheet['B7'].value = '担当者名:鈴木一郎 様'
+
 sheet['B10'].value = '商品名'
 sheet['B11'].value = '商品A'
 sheet['B12'].value = '商品B'
 sheet['C10'].value = '数量'
 sheet['D10'].value = '単価'
 sheet['E10'].value = '金額'
+
+sheet['C15'].value = '小計'
+sheet['C16'].value = '消費税'
+sheet['C17'].value = '合計'
+
 sheet['F4'].value = 'No.'
 sheet['G4'].value = '0001'
+today = datetime.now()
 sheet['F5'].value = '日付'
-sheet['F5'].value = today.strftime('%Y/%m/%d')
+sheet['G5'].value = today.strftime('%Y/%m/%d')
 
+sheet['C11'].value = 2
+sheet['D11'].value = 10000
+sheet['C12'].value = 1
+sheet['D12'].value = 15000
+sheet['E11'].value = sheet['C11'].value * sheet['D11'].value
+sheet['E12'].value = sheet['C12'].value * sheet['D12'].value
 
+subtotal = sheet['E11'].value + sheet['E12'].value
+tax_rate = 0.1
+tax = subtotal * tax_rate
+total = subtotal + tax
 
-
-sheet['C11'].value = '2'
-sheet['D11'].value = '1'
-sheet['D11'].value = '10000'
-sheet['D12'].value = '15000'
-sheet['E11'].value = (2*10000)
-sheet['E12'].value = (1*15000)
-sheet['E13'].value = ((2*10000)+(1*15000))
+sheet['E15'].value = subtotal            
+sheet['E16'].value = tax               
+sheet['E17'].value = total               
 
 workbook.save('請求書_20230520（現在日付）.xlsx')
